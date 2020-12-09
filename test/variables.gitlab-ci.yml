@@ -1,98 +1,12 @@
 stages:
-  - first
-  - build
-  - second
-  - test
-  - third
-  - deploy
-  - final
+  - build_mssql
 
 variables:
-  FST_VAR: "Hallo!!! 1st"
 
 image: busybox
 
 first_step1:
-  stage: first
+  stage: build_mssql
+  image: mcr.microsoft.com/mssql/server:2019-latest
   script:
-    - echo "======== This is first stage, step 1 ========"
-    - echo "1. FST_VAR = $FST_VAR"
-    - echo "1. CI_JOB_STAGE = $CI_JOB_STAGE"
-    - echo "1. CI_JOB_ID = $CI_JOB_ID"
-    - echo "======== This is first stage, step 1 ========"
-
-first_step2:
-  stage: first
-  script:
-    - echo "======== This is first stage, step 2 ========"
-    - echo "2. FST_VAR = $FST_VAR"
-    - echo "2. CI_JOB_STAGE = $CI_JOB_STAGE"
-    - echo "2. CI_JOB_ID = $CI_JOB_ID"
-    - echo "======== This is first stage, step 2 ========"
-
-build_step1:
-  stage: build
-  script:
-    - echo "======== This is build stage ========"
-    - export
-    - echo "======== This is build stage ========"
-
-second_step1:
-  stage: second
-  script:
-    - echo "======== This is second stage, step 1 ========"
-    - echo "======== This is second stage, step 1 ========"
-
-second_step2:
-  stage: second
-  script:
-    - echo "======== This is second stage, step 2 ========"
-    - echo "======== This is second stage, step 2 ========"
-
-second_step3:
-  stage: second
-  script:
-    - echo "======== This is second stage, step 3 ========"
-    - echo "======== This is second stage, step 3 ========"
-
-final_step1:
-  stage: final
-  script:
-    - echo "======== This is FINAL stage, step 1 ========"
-    - echo "======== This is FINAL stage, step 1 ========"
-
-final_step2:
-  stage: final
-  script:
-    - echo "======== This is FINAL stage, step 2 ========"
-    - echo "======== This is FINAL stage, step 2 ========"
-
-final_step3:
-  stage: final
-  script:
-    - echo "======== This is FINAL stage, step 3 ========"
-    - echo "======== This is FINAL stage, step 3 ========"
-
-final_step4:
-  stage: final
-  script:
-    - echo "======== This is FINAL stage, step 4 ========"
-    - echo "======== This is FINAL stage, step 4 ========"
-
-test_step1:
-  stage: test
-  script:
-    - echo "======== This is test stage ========"
-    - echo "======== This is test stage ========"
-
-third_step1:
-  stage: third
-  script:
-    - echo "======== This is third stage ========"
-    - echo "======== This is third stage ========"
-
-deploy_step1:
-  stage: deploy
-  script:
-    - echo "======== This is deploy stage ========"
-    - echo "======== This is deploy stage ========"
+    - echo "Done"
