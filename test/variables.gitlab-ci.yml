@@ -16,12 +16,12 @@ build_mssql:
   stage: mssql_build
   image: mcr.microsoft.com/mssql-tools:latest
   script:
-    - sqlcmd -S mssql -U sa -P "~1234aaAA`" > SELECT @@version; > CREATE DATABASE test_mssql; > GO
+    - sqlcmd -S mssql -U sa -P '~1234aaAA`' > SELECT @@version; > CREATE DATABASE test_mssql; > GO
 
 run_script:
   stage: mssql_runscript
   image: mcr.microsoft.com/mssql-tools:latest
   script:
     - echo "Running scripts..."
-    - sqlcmd -S mssql -U sa -P "~1234aaAA`" > SELECT * FROM sys.databases WITH (NOLOCK); > GO
+    - sqlcmd -S mssql -U sa -P '~1234aaAA`' > SELECT * FROM sys.databases WITH (NOLOCK); > GO
     - sleep 2m
