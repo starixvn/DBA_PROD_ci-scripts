@@ -7,17 +7,21 @@ variables:
   SA_PASSWORD: "~1234aaAA`"
 
 services:
-  - mcr.microsoft.com/mssql/server:2019-latest
+  - name: mcr.microsoft.com/mssql/server:2019-latest
+    alias: mssql
 
-image: busybox
+image: alpine
 
 build_mssql:
   stage: mssql_build
+  image: mcr.microsoft.com/mssql-tools:latest
   script:
-    - sleep 10m
+    - sqlcmd -S mssql -U sa -P "~1234aaAA`" > SELECT @@version; > CREATE DATABASE test_mssql; > GO
 
 run_script:
   stage: mssql_runscript
+  image: mcr.microsoft.com/mssql-tools:latest
   script:
     - echo "Running scripts..."
+    - sqlcmd -S mssql -U sa -P "~1234aaAA`" > SELECT * FROM sys.databases WITH (NOLOCK); > GO
     - sleep 2m
