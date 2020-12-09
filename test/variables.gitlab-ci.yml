@@ -16,7 +16,7 @@ build_mssql:
   stage: mssql_build
   image: mcr.microsoft.com/mssql-tools:latest
   script:
-    - /opt/mssql-tools/bin/sqlcmd -S mssql -U sa -P $SA_PASSWORD -Q "SELECT @@version; CREATE DATABASE test_mssql;"
+    - /opt/mssql-tools/bin/sqlcmd -S mssql -U sa -P $SA_PASSWORD -Q "SELECT @@version; CREATE DATABASE test_mssql; SELECT name FROM sys.databases WITH (NOLOCK);"
 
 run_script:
   stage: mssql_runscript
