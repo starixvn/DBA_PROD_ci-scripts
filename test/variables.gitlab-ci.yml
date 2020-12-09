@@ -10,6 +10,7 @@ build_mssql:
   stage: mssql_build
   image: mcr.microsoft.com/mssql/server:2019-latest
   script:
+    - sleep 5m
     - echo "Done"
 
 run_script:
