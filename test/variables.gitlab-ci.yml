@@ -1,12 +1,20 @@
 stages:
-  - build_mssql
+  - mssql_build
+  - mssql_runscript
 
 variables:
 
 image: busybox
 
-first_step1:
-  stage: build_mssql
+build_mssql:
+  stage: mssql_build
   image: mcr.microsoft.com/mssql/server:2019-latest
   script:
     - echo "Done"
+
+run_script:
+  stage: mssql_runscript
+  script:
+    - echo "Running scripts..."
+    - sleep 2m
+    - exit 13
