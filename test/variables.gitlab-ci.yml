@@ -17,12 +17,14 @@ build_mssql:
   image: mcr.microsoft.com/mssql-tools:latest
   script:
     - /opt/mssql-tools/bin/sqlcmd -S mssql -U sa -P $SA_PASSWORD -Q "SELECT @@version; CREATE DATABASE test_mssql; SELECT name FROM sys.databases WITH (NOLOCK);"
+    - ls -alhH
 
 build_mssql_2:
   stage: mssql_build
   image: mcr.microsoft.com/mssql-tools:latest
   script:
     - /opt/mssql-tools/bin/sqlcmd -S mssql -U sa -P $SA_PASSWORD -Q "SELECT @@version; CREATE DATABASE test_mssql_2; SELECT name FROM sys.databases WITH (NOLOCK);"
+    - ls -alhH
 
 run_script:
   stage: mssql_runscript
