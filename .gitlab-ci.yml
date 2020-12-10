@@ -1,2 +1,0 @@
-include:
-  local: /test/variables.gitlab-ci.yml
