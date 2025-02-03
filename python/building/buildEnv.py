@@ -25,8 +25,8 @@ class buildEnv:
         self.cf2 = cf2
         self.logs = logs
     def getENV(self):
-        if checkExistsENV() == 0:
-            return null
+        if self.checkExistsENV() == 0:
+            return None
         else:
             return self
     def checkExistsENV(self):
