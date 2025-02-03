@@ -3,6 +3,7 @@
 import sys
 import os
 sys.path.append('/ci/python/config')
+sys.path.append('/ci/python/package')
 sys.path.append('/ci/python/building')
 sys.path.append('/ci/python/running')
 sys.path.append('/ci/python/preparing_resource')
@@ -14,10 +15,10 @@ from log import logCI
 from extract import extract
 import string
 class execPackage:
-    def __init__(self,cf1,cf2,logs,env):
-        self.logs = logCI(cf2.getServerList(), cf1)
-        self.zfolder = cf2.getZFolder()
-        self.xfolder = cf2.getXFolder()
+    def __init__(self,zfolder,xfolder,cf1,cf2,logs,env):
+        self.logs = logs
+        self.zfolder = zfolder
+        self.xfolder = xfolder
         self.env = env
     def execScripts(self):
         rs = extract(self.zfolder,self.xfolder)

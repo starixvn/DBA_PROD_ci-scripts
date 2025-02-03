@@ -24,9 +24,14 @@ class buildEnv:
         self.cf1 = cf1
         self.cf2 = cf2
         self.logs = logs
+    def getENV(self):
+        if checkExistsENV() == 0:
+            return null
+        else:
+            return self
+    def checkExistsENV(self):
+        self.dr.getContainers()
     def prepareENV(self):
-        
-        
         #create/check needed directory
         for i in self.listServer:
             dir = self.volumeDir + self.commitId + os.sep + i

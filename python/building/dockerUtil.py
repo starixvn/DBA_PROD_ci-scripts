@@ -137,6 +137,19 @@ class docker_util:
                 self.logs.writeLog('waiting for container %s starting' %(cons[sv]),sv)    
             self.logs.writeLog('%s is running on port %d' %(cons[sv],self.ports[sv]))
         return cons
+    def getContainers(self):
+        cons = {}
+        for sv in self.listServer:
+            con = self.getContainer(sv,self.commitID)
+            cons.update({sv:con})
+        return cons
+    def getContainer(self, servername,commitID):
+        try:
+            con = self.client.get(serverName + commitID)
+            return con
+        except:
+            self.logs.writeLog('%s is not exists' %(serverName + commitID))
+            return null
     def isPortInUse(self,port):
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             return s.connect_ex(('localhost', port)) == 0
