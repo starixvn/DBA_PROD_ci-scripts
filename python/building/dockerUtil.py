@@ -140,15 +140,15 @@ class docker_util:
     def getContainers(self):
         cons = {}
         for sv in self.listServer:
-            con = self.getContainer(sv,self.commitID)
+            con = self.getContainer(sv,self.commitId)
             cons.update({sv:con})
         return cons
-    def getContainer(self, servername,commitID):
+    def getContainer(self, servername,commitId):
         try:
-            con = self.client.get(serverName + commitID)
+            con = self.client.get(servername + commitId)
             return con
         except:
-            self.logs.writeLog('%s is not exists' %(serverName + commitID))
+            self.logs.writeLog('%s is not exists' %(servername + commitId))
             return null
     def isPortInUse(self,port):
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
@@ -159,7 +159,7 @@ class docker_util:
                 return i
     def commitImages(self,cons=None,registryDir=None):
         if cons is None:
-            c = self.cons
+            c = self.getContainers()
         else:
             c = cons
         if registryDir is None:
