@@ -108,6 +108,7 @@ class docker_util:
             for sv in self.listServer:
                 self.buildImage(sv)
     def createMssqlContainers(self,listServer=None):
+        self.cleanUpContainers(listServer)
         cons = {}
         try:
             self.client.networks.create(name=self.networkName,driver='bridge',check_duplicate=True)
@@ -150,6 +151,19 @@ class docker_util:
         except:
             self.logs.writeLog('%s is not exists' %(servername + commitId))
             return null
+    def cleanUpContainers(self,listServer=None):
+        if listServer is None:
+            listServer = self.listServer
+        for sv in listServer:
+            try:
+                con = self.getContainer(sv,self.commitId)
+                if con.status =='running'
+                    con.stop()
+                con.remove()
+            except docker.errors.NotFound:
+                self.logs.writeLog('Container '+sv+self.commitId+' not found.')
+            except e:
+                self.logs.writeLog(e)
     def isPortInUse(self,port):
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             return s.connect_ex(('localhost', port)) == 0
