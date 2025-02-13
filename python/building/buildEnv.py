@@ -57,28 +57,28 @@ class buildEnv:
                 file = files[0]
                 modifyLogin(file,destPath)
             except Exception as e:
-                self.logs.writeLog(e,i)
+                self.logs.writeLog("not exists any file in "+self.cf1.getConfigDir()+i+os.sep + 'loginid',i)
             try:
                 files = glob.glob(self.cf1.getConfigDir()+i+os.sep + 'linkedserver'+'/*_create-linkedserver_*')
                 files = sorted(files,reverse=True)
                 file = files[0]
                 modifyLinkedServer(file,destPath)
             except Exception as e:
-                self.logs.writeLog(e,i)
+                self.logs.writeLog("not exists any file in "+self.cf1.getConfigDir()+i+os.sep +  'linkedserver',i)
             try:
                 files = glob.glob(self.cf1.getConfigDir()+i+os.sep + 'replication'+'/*replication_20*')
                 files = sorted(files,reverse=True)
                 file = files[0]
                 modifyReplication(file,self.listServer,self.commitId,destPath)
             except Exception as e:
-                self.logs.writeLog(e,i)
+                self.logs.writeLog("not exists any file in "+self.cf1.getConfigDir()+i+os.sep +  'replication',i)
             try:
                 files = glob.glob(self.cf1.getConfigDir()+i+ os.sep + 'agentjob'+'/*agentjob_20*')
                 files = sorted(files,reverse=True)
                 file = files[0]
                 modifyAgentJob(file,destPath)
             except Exception as e:
-                self.logs.writeLog(e,i)
+                self.logs.writeLog("not exists any file in "+self.cf1.getConfigDir()+i+os.sep +  'agentjob',i)
         return
     def startENV(self):
         self.prepareENV()
